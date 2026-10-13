@@ -43,12 +43,6 @@ Pipeline CDC end-to-end: **Neon (Postgres) → Debezium CDC → Kafka (Avro) →
 │   ├── 03-flink-tables.sql   # Tabelas Flink (source + sink)
 │   ├── 04-temporal-join.sql  # Transações ⋈ Contas (temporal join)
 │   └── 05-fraud-detection.sql # RULE_VELOCITY via MATCH_RECOGNIZE
-├── evidencias/                       # Gerado pela execução real do pipeline
-│   ├── 01-envelopes-cdc.json         # (gerado) op=c, op=u, op=d + tombstone
-│   ├── 02-fraud-alert.json           # (gerado) Alerta RULE_VELOCITY
-│   ├── 03-schema-compatibility.json  # (gerado) Testes BACKWARD
-│   ├── 04-metrics-api.json           # (gerado) received_bytes + consumer lag
-│   └── 05-billing-cost.json          # (gerado) Custos + alavancas
 └── README.md
 ```
 
