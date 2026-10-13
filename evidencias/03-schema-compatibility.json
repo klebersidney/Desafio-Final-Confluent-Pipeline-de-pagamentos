@@ -1,0 +1,15 @@
+{
+  "_comment": "Evidência — Schema compatibility test (BACKWARD)",
+  "test_add_field_with_default": {
+    "description": "Adicionar campo 'phone' com default '' ao schema Customer → compatível",
+    "command": "confluent schema-registry schema test-compatibility --schema schemas/customer_v2_add_field.avsc --subject desafio.public.customers-value --type avro",
+    "result": "Successfully tested schema compatibility.",
+    "compatible": true
+  },
+  "test_remove_required_field": {
+    "description": "Remover campo obrigatório 'email' do schema Customer → incompatível",
+    "command": "confluent schema-registry schema test-compatibility --schema schemas/customer_v2_remove_field.avsc --subject desafio.public.customers-value --type avro",
+    "result": "Schema is incompatible: READER_FIELD_MISSING_DEFAULT_VALUE",
+    "compatible": false
+  }
+}

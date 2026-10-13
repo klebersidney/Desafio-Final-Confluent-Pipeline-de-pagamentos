@@ -1,0 +1,77 @@
+[
+  {
+    "_comment": "op=c — CREATE: inserção de um novo customer via snapshot inicial do CDC",
+    "before": null,
+    "after": {
+      "id": 1,
+      "full_name": "Customer_1",
+      "email": "customer_1@mail.com",
+      "document": "01234567890",
+      "created_at": 1728700800000
+    },
+    "source": {
+      "connector": "postgresql",
+      "db": "neondb",
+      "schema": "public",
+      "table": "customers",
+      "lsn": 28450632,
+      "txId": 501
+    },
+    "op": "c",
+    "ts_ms": 1728700810000
+  },
+  {
+    "_comment": "op=u — UPDATE: saldo da account_id=1 alterado (+100.00). REPLICA IDENTITY FULL garante before completo",
+    "before": {
+      "id": 1,
+      "customer_id": 42,
+      "status": "ACTIVE",
+      "balance": "MjUwMDAuMDA=",
+      "updated_at": 1728690000000
+    },
+    "after": {
+      "id": 1,
+      "customer_id": 42,
+      "status": "ACTIVE",
+      "balance": "MjUxMDAuMDA=",
+      "updated_at": 1728700815000
+    },
+    "source": {
+      "connector": "postgresql",
+      "db": "neondb",
+      "schema": "public",
+      "table": "accounts",
+      "lsn": 28451200,
+      "txId": 502
+    },
+    "op": "u",
+    "ts_ms": 1728700815000
+  },
+  {
+    "_comment": "op=d — DELETE: remoção da última transação. after=null; tombstone enviado separadamente (key presente, value=null)",
+    "before": {
+      "id": 2000,
+      "card_id": 2,
+      "account_id": 2,
+      "merchant_id": 6,
+      "amount": "MjIwMC4wMA==",
+      "created_at": 1728700800000
+    },
+    "after": null,
+    "source": {
+      "connector": "postgresql",
+      "db": "neondb",
+      "schema": "public",
+      "table": "transactions",
+      "lsn": 28451500,
+      "txId": 503
+    },
+    "op": "d",
+    "ts_ms": 1728700820000
+  },
+  {
+    "_comment": "Tombstone (key-only, value=null) — enviado automaticamente após o op=d para compactação de log",
+    "key": {"id": 2000},
+    "value": null
+  }
+]

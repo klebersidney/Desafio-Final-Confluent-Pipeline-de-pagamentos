@@ -1,0 +1,11 @@
+{
+  "type": "record",
+  "name": "Card",
+  "namespace": "com.bootcamp.payments",
+  "fields": [
+    {"name": "id", "type": "long"},
+    {"name": "account_id", "type": "long"},
+    {"name": "pan_masked", "type": "string", "confluent:tags": ["PCI"]},
+    {"name": "status", "type": "string"}
+  ]
+}

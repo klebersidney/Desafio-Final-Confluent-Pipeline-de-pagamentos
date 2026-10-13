@@ -1,0 +1,12 @@
+{
+  "type": "record",
+  "name": "Customer",
+  "namespace": "com.bootcamp.payments",
+  "fields": [
+    {"name": "id", "type": "long"},
+    {"name": "full_name", "type": "string", "confluent:tags": ["PII"]},
+    {"name": "email", "type": "string", "confluent:tags": ["PII"]},
+    {"name": "document", "type": "string", "confluent:tags": ["PII"]},
+    {"name": "created_at", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+  ]
+}

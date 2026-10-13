@@ -1,0 +1,10 @@
+{
+  "type": "record",
+  "name": "Merchant",
+  "namespace": "com.bootcamp.payments",
+  "fields": [
+    {"name": "id", "type": "long"},
+    {"name": "name", "type": "string"},
+    {"name": "category", "type": "string"}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "cdc-postgres-source",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.PostgresCdcSourceV2",
+    "database.hostname": "${env:PG_HOST}",
+    "database.port": "${env:PG_PORT}",
+    "database.user": "${env:PG_USER}",
+    "database.password": "${env:CDC_PASSWORD}",
+    "database.dbname": "${env:PG_DATABASE}",
+    "database.sslmode": "${env:PG_SSLMODE}",
+    "database.server.name": "desafio",
+    "publication.name": "desafio_pub",
+    "slot.name": "desafio_slot",
+    "topic.prefix": "desafio",
+    "table.include.list": "public.customers,public.accounts,public.cards,public.merchants,public.transactions",
+    "heartbeat.interval.ms": "60000",
+    "output.data.format": "AVRO",
+    "output.key.format": "AVRO",
+    "after.state.only": "false",
+    "tasks.max": "1"
+  }
+}

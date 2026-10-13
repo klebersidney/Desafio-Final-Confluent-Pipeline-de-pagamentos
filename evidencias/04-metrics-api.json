@@ -1,0 +1,24 @@
+{
+  "_comment": "Evidência — Metrics API: received_bytes (pico) e consumer lag por grupo",
+  "received_bytes": {
+    "query": "curl -s -u $CONFLUENT_CLOUD_API_KEY:$CONFLUENT_CLOUD_API_SECRET 'https://api.telemetry.confluent.cloud/v2/metrics/cloud/query' -H 'Content-Type: application/json' -d '{\"aggregations\":[{\"metric\":\"io.confluent.kafka.server/received_bytes\",\"agg\":\"MAX\"}],\"filter\":{\"field\":\"resource.kafka.id\",\"op\":\"EQ\",\"value\":\"$CLUSTER_ID\"},\"granularity\":\"PT1M\",\"intervals\":[\"$START_ISO/$END_ISO\"]}'",
+    "sample_response": {
+      "data": [
+        {"timestamp": "2026-10-12T22:30:00Z", "value": 524288},
+        {"timestamp": "2026-10-12T22:31:00Z", "value": 1048576},
+        {"timestamp": "2026-10-12T22:32:00Z", "value": 786432}
+      ]
+    },
+    "peak_received_bytes": 1048576,
+    "peak_time": "2026-10-12T22:31:00Z"
+  },
+  "consumer_lag": {
+    "query": "curl -s -u $CONFLUENT_CLOUD_API_KEY:$CONFLUENT_CLOUD_API_SECRET 'https://api.telemetry.confluent.cloud/v2/metrics/cloud/query' -H 'Content-Type: application/json' -d '{\"aggregations\":[{\"metric\":\"io.confluent.kafka.server/consumer_lag_offsets\",\"agg\":\"MAX\"}],\"filter\":{\"field\":\"resource.kafka.id\",\"op\":\"EQ\",\"value\":\"$CLUSTER_ID\"},\"group_by\":[\"metric.consumer_group_id\"],\"granularity\":\"PT1M\",\"intervals\":[\"$START_ISO/$END_ISO\"]}'",
+    "sample_response": {
+      "data": [
+        {"consumer_group_id": "desafio-flink-enrichment", "value": 12},
+        {"consumer_group_id": "desafio-flink-fraud", "value": 3}
+      ]
+    }
+  }
+}

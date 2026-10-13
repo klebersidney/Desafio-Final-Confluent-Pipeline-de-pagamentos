@@ -1,0 +1,16 @@
+{
+  "type": "record",
+  "name": "FraudAlert",
+  "namespace": "com.bootcamp.payments",
+  "fields": [
+    {"name": "alert_id", "type": "string"},
+    {"name": "rule", "type": "string"},
+    {"name": "card_id", "type": "long"},
+    {"name": "account_id", "type": "long"},
+    {"name": "transaction_ids", "type": {"type": "array", "items": "long"}},
+    {"name": "total_amount", "type": {"type": "bytes", "logicalType": "decimal", "precision": 15, "scale": 2}},
+    {"name": "window_start", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "window_end", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "detected_at", "type": {"type": "long", "logicalType": "timestamp-millis"}}
+  ]
+}
